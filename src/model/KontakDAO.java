@@ -19,17 +19,18 @@ public class KontakDAO {
         List<Kontak> contacts = new ArrayList<>(); 
         String sql = "SELECT * FROM contacts"; 
         try (Connection conn = DatabaseConnection.getConnection(); 
-             Statement stmt = conn.createStatement(); 
-             ResultSet rs = stmt.executeQuery(sql)) { 
-            while (rs.next()) { 
-                Kontak contact = new Kontak( 
+            Statement stmt = conn.createStatement(); 
+            ResultSet rs = stmt.executeQuery(sql)) { 
+                while (rs.next()) { 
+                    Kontak contact = new Kontak( 
                         rs.getInt("id"), 
                         rs.getString("nama"), 
                         rs.getString("nomor_telepon"), 
-                        rs.getString("kategori")); 
-                contacts.add(contact); 
+                        rs.getString("kategori")
+                    ); 
+                    contacts.add(contact); 
+                } 
             } 
-        } 
         return contacts; 
     } 
 
